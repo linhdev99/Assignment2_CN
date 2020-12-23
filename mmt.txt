@@ -1,0 +1,159 @@
+enable
+config t
+interface fa0/11
+switch
+switch portaccess vlan2 ( vlan2 3 4 5 6 gi do tuy cai chon tuyet do ko dat vlan1)
+----------------------
+switch# configure terminal
+switch(config)# interface ethernet 1/7  (ethernet 1/7 la port ethernet)
+switch(config-if)# switchport access vlan 2  ( cho no vao vlan2)
+
+
+-----------------
+
+SET trunking
+------------------------
+configure terminal
+interface fa0/22
+switchport mode trunk
+no shut
+exit
+
+-----------------------------
+tao vlan
+
+enable
+configure terminal
+vlan 2 
+name TenVlan // ten vlan
+vlan 3 
+name tenVlan   //ten vlan
+exit
+-----------------------
+
+
+
+Switch#show vlan
+
+-------------------------
+gan port toi vlan
+enable
+configure terminal
+Switch(config)#interface range f0/1-8    ( gan theo range or tung cai interface fa0/2)
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan n
+Switch(config-if)#no shut
+Switch(config-if)#exit
+
+dung toi terminal la phai no shut  roi exit
+-------------------------
+# enable
+# configure terminal
+(config)# interface FastEthernet 0/1   
+(config-subif)# no shutdown
+(config-subif)# end
+# write
+
+show interfaces FastEthernet 0/15 status
+
+----------------------------
+
+interface vlan 1
+ip address 192.168.1.10 255.255.255.0
+no shutdown
+ip default-gateway 192.168.1.1
+
+interface fastethernet1/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+interface range fastethernet1/1 - 2
+switchport access vlan 2
+interface range fastethernet1/3 - 4 
+switchport access vlan 3
+exit
+exit
+
+show vlan brief
+show interface trunk
+show interfaces switchport
+ 
+
+Switch>enable
+Switch#conf t
+Switch(config)#int f0/1
+Switch(config-if)#no shut
+Switch(config-if)#exit
+
+
+
+
+
+--------------------------
+
+enable
+configure
+vlan 2 
+name S2
+cau hinh switch layer
+enable
+configure terminal
+
+
+no shut 
+no shudown
+ip con
+
+no shut 
+no shudown
+exit
+
+//swtich layer 3
+enable
+conf t
+interface gigabitEthernet 1/0/3
+no switchport
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+ip routing
+exit
+conf t
+vlan 2
+switchport trunk encapsulation dot1q
+switchport trunk encapsulation dot1q
+switch mode trunk
+no shutdown
+conf t
+interface vlan 2
+ip address 192.168.5.1 255.255.255.0
+no shutdown
+exit
+
+//Access List
+enable
+conf t
+ip access-list extended AL
+deny ip 192.168.5.0 0.0.0.255 192.168.3.0 0.0.0.255
+permit ip any any
+exit
+interface vlan 2
+ip access-group AL in 
+no shutdown
+exit
+interface vlan 3
+ip access-group AL in 
+no shutdown
+exit
+
+
+-======
+xóa access list
+config t
+no ip access-list extended AccNames
+
+
+
+
+
+
+// cau hinh switch layer 3
+ip access list
